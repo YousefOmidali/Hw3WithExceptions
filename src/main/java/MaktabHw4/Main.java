@@ -30,6 +30,7 @@ public class Main {
         Boolean cinemaLogin = false;
         Boolean situation = false;
         Integer order;
+        //int x;
 
 
         while (loginStatus) {
