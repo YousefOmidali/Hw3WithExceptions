@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Date;
 
 public class Methods {
+
     private Connection connection;
 
     public void createCustomerTable(Connection connection) throws SQLException {
