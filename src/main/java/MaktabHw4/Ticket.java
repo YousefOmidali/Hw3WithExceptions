@@ -5,8 +5,8 @@ import sun.util.calendar.LocalGregorianCalendar;
 import java.util.Date;
 
 public class Ticket {
-    private  String movieName ;
-    private String cinemaName ;
+    private  String movieName;
+    private String cinemaName;
     private Integer ticketId ;
     private Date showTime ;
     private String reservedBy ;

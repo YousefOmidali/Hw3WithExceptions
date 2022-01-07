@@ -30,7 +30,8 @@ public class Main {
         Boolean cinemaLogin = false;
         Boolean situation = false;
         Integer order;
-
+// salam dostan
+//        int s = 0;
 
         while (loginStatus) {
             System.out.println("1.Login \n2.SignUp ");
