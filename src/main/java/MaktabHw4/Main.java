@@ -14,7 +14,7 @@ public class Main {
                 DriverManager.getConnection("jdbc:postgresql://localhost:5435/postgres", "postgres", "postgres");
         Scanner scanner = new Scanner(System.in);
         Boolean loginStatus = true;
-        Integer loginOrSignUp;
+        Integer loginOrSignUp ;
         methods.createCustomerTable(connection);
         methods.createCinemaTable(connection);
         methods.createMainAdminTable(connection);
