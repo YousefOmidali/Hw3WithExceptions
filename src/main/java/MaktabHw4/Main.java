@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
-
-    public static void main(String[] args) throws SQLException{
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        Class.forName("org.postgresql.Driver");
         Methods methods = new Methods();
         Connection connection =
                 DriverManager.getConnection("jdbc:postgresql://localhost:5435/postgres", "postgres", "postgres");
@@ -20,8 +20,8 @@ public class Main {
         methods.createMainAdminTable(connection);
         //todo text write by mahdi
         String fName;
-        String lastname;
-        String username;
+        String lName;
+        String uName;
         String showTime;
         String movieName;
         String password;
@@ -31,7 +31,6 @@ public class Main {
         Boolean cinemaLogin = false;
         Boolean situation = false;
         Integer order;
-        //int x;
 
 
         while (loginStatus) {
@@ -43,10 +42,10 @@ public class Main {
                 int loginCustomerOrCinemaOrAdmin = scanner.nextInt();
                 if (loginCustomerOrCinemaOrAdmin == 1) {
                     System.out.println("Please enter your username: ");
-                    username = scanner.nextLine();
+                    uName = scanner.nextLine();
                     System.out.println("Please enter your password: ");
                     password = scanner.nextLine();
-                    situation = methods.customerLogin(username, password);
+                    situation = methods.customerLogin(uName, password);
                     if (situation) {
                         customerLogin = true;
                         situation = false;
@@ -54,10 +53,10 @@ public class Main {
 
                 } else if (loginCustomerOrCinemaOrAdmin == 2) {
                     System.out.println("Please enter your username: ");
-                    username = scanner.nextLine();
+                    uName = scanner.nextLine();
                     System.out.println("Please enter your password: ");
                     password = scanner.nextLine();
-                    situation = methods.adminLogin(username, password);
+                    situation = methods.adminLogin(uName, password);
                     if (situation) {
                         adminLogin = true;
                         situation = false;
@@ -65,10 +64,10 @@ public class Main {
 
                 } else if (loginCustomerOrCinemaOrAdmin == 3) {
                     System.out.println("Please enter your username: ");
-                    username = scanner.nextLine();
+                    uName = scanner.nextLine();
                     System.out.println("Please enter your password: ");
                     password = scanner.nextLine();
-                    situation = methods.cinemaLogin(username, password);
+                    situation = methods.cinemaLogin(uName, password);
                     if (situation) {
                         cinemaLogin = true;
                         situation = false;
@@ -82,22 +81,22 @@ public class Main {
                     System.out.println("Please enter your first name: ");
                     fName = scanner.nextLine();
                     System.out.println("Please enter your last name:  ");
-                    lastname = scanner.nextLine();
+                    lName = scanner.nextLine();
                     System.out.println("Please enter your username: ");
-                    username = scanner.nextLine();
+                    uName = scanner.nextLine();
                     System.out.println("Please enter your password: ");
                     password = scanner.nextLine();
-                    methods.customerRegister(fName, lastname, username, password);
+                    methods.customerRegister(fName, lName, uName, password);
                     System.out.println("Done! ");
 
                 } else if (whatAreYou == 2) {
                     System.out.println("Please enter Cinema name:  ");
                     cinemaName = scanner.nextLine();
                     System.out.println("Please enter your username: ");
-                    username = scanner.nextLine();
+                    uName = scanner.nextLine();
                     System.out.println("Please enter your password: ");
                     password = scanner.nextLine();
-                    methods.cinemaRegister(cinemaName, username, password);
+                    methods.cinemaRegister(cinemaName, uName, password);
                     System.out.println("Done! ");
 
                 } else System.out.println("wrong number! ");
@@ -111,12 +110,12 @@ public class Main {
                 System.out.println("please enter cinema name: ");
                 cinemaName = scanner.nextLine();
                 System.out.println("please enter cinema username:");
-                username = scanner.nextLine();
+                uName = scanner.nextLine();
                 System.out.println("please enter cinema password:");
                 password = scanner.nextLine();
                 System.out.println("please enter cinema's status (Allow) or (Deni)");
                 String situationInMain = scanner.nextLine();
-                methods.updateCinema(cinemaName, username, password, situationInMain);
+                methods.updateCinema(cinemaName, uName, password, situationInMain);
             } else System.out.println("wrong number! ");
         }
         while (customerLogin) {
@@ -130,8 +129,8 @@ public class Main {
                 System.out.println("Enter ticket id:");
                 int ticketId = scanner.nextInt();
                 System.out.println("Enter your username: ");
-                username = scanner.nextLine();
-                methods.ticketReserving(ticketNumber, ticketId, username);
+                uName = scanner.nextLine();
+                methods.ticketReserving(ticketNumber, ticketId, uName);
                 System.out.println("Done! ");
             } else if (order == 3) {
                 System.out.println("What is the movie name: ");
